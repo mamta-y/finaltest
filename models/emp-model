@@ -1,0 +1,65 @@
+const express = require('express');
+const app = express();
+const mongoose=require('mongoose');
+const Joi=require('joi');
+const { required, date } = require('joi');
+
+const Emp=  mongoose.model('Emp', new mongoose.Schema({
+    firstname:{
+        type:String,
+        required:true,
+        minlength:5,
+        maxlength:15,
+        trim:true
+    },
+
+    lastname:{
+        type:String,
+        required:true,
+        minlength:5,
+        maxlength:15,
+        trim:true
+    },
+    email:{
+        type:String,
+        unique:true
+    },
+password:{
+    type:String,
+    required:true,
+    minlength:5,
+    maxlength:250
+},
+   departmentname:{
+    type:String,
+    required:true,
+    minlength:5,
+    maxlength:50,
+    trim:true
+   },
+   joiningdate:{
+       type:Date
+
+   },
+   date_of_birth:{
+    type:Date
+
+   }
+
+}) )
+function validateemp(emp){
+const schema = Joi.object({
+firstname:Joi.string().required().min(5).max(15).trim(),
+lastname:Joi.string().required().min(5).max(15).trim(),
+email:Joi.string().required().email(),
+password:Joi.string().required().min(5).max(50),
+departmentname:Joi.string().required().min(5).max(50).trim(),
+joiningdate:Joi.date(),
+date_of_birth:Joi.date(),
+
+
+});
+return schema.validate(emp);
+}
+module.exports.Emp=Emp;
+module.exports.validateemp=validateemp;

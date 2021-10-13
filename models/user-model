@@ -1,0 +1,65 @@
+
+const express = require('express');
+const app = express();
+const mongoose=require('mongoose');
+const Joi=require('joi');
+
+
+const User=  mongoose.model('User', new mongoose.Schema({
+    firstname:{
+        type:String,
+        required:true,
+        minlength:6,
+        maxlength:15,
+        trim:true
+    },
+    lastname:{
+        type:String,
+        required:true,
+        minlength:5,
+        maxlength:15,
+        trim:true
+    },
+    email:{
+        type:String,
+        unique:true,
+        required:true
+    },
+password:{
+    type:String,
+    required:true,
+    minlength:5,
+    maxlength:250
+},
+role:{
+    type:String,
+    enum:['admin','user']
+
+},
+// date_of_birth:{
+//     type:Date,
+    // validate:{
+    //     validator:function check(){
+    //         let enteredDate=new Date(value);
+    //         let todaysDate=new Date();
+    //         if(enteredDate>todaysDate){
+    //             throw new Error("Invalid Date");
+    //         }
+    //         return true;
+    //     }}
+//}
+
+}) );
+function validateuser(user){
+const schema = Joi.object({
+firstname:Joi.string().required().min(6).max(15).trim(),
+lastname:Joi.string().required().min(6).max(15).trim(),
+email:Joi.string().required().email(),
+       password:Joi.string().required().min(5).max(50),
+role:Joi.string().required(),
+
+});
+return schema.validate(user);
+}
+module.exports.User=User;
+module.exports.validateuser=validateuser;

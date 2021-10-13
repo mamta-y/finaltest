@@ -1,0 +1,41 @@
+const express = require('express');
+const app = express();
+const mongoose=require('mongoose');
+const Joi=require('joi');
+const { required, date } = require('joi');
+
+const Leave=  mongoose.model('Leave', new mongoose.Schema({
+   from:{
+       type:Date,
+       required:true
+   },
+   to:{
+    type:Date,
+    required:true
+   },
+   reason:{
+    type:String,
+    required:true,
+    minlength:10,
+    maxlength:255,
+    trim:true
+
+},
+   status:{
+       type:String,
+//enum:['pending','approved','cancelled'],
+   }
+  
+}) )
+function validateleave(leave){
+const schema = Joi.object({
+from:Joi.date().required(),
+to:Joi.date().required(),
+
+reason:Joi.string().required().min(10).max(255).trim(),
+status:Joi.string(),
+});
+return schema.validate(leave);
+}
+module.exports.Leave=Leave;
+module.exports.validateleave=validateleave;
