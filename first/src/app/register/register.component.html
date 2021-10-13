@@ -1,0 +1,48 @@
+<div class="alert alert-danger" *ngIf = "error">{{ error }}</div>
+<div class="alert alert-success" *ngIf = "message">{{ message }}</div>
+<div class="col-md-4 offset-md-4 mt-3">
+    <form action="" #userregister="ngForm" (ngSubmit)=onregister(userregister)>
+        <div class="card">
+            <h3 class="card-header text-center"> Register Here!!!</h3>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="firstname">FirstName</label>
+                        <input type="text" name='firstname' class="form-control" ngModel #firstname="ngModel"  required  maxlength="10" minlength="3">
+                        <div id="smallField" *ngIf="firstname.touched && !firstname.valid">Firstname is required</div>
+                     </div>
+                     <div class="form-group">
+                        <label for="lasttname">LastName</label>
+                        <input type="text" name='lastname' class="form-control" ngModel #lastname="ngModel"  required  maxlength="10" minlength="3">
+                        <div id="smallField" *ngIf="lastname.touched && !lastname.valid">Lastname is required</div>
+                     </div>
+                    <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" ngModel #email="ngModel" required>
+                    <div id="smallField" *ngIf="email.touched && !email.valid">Email is required</div>
+                     </div>
+                     <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" name="password" ngModel #password="ngModel" required minlength="6" maxlength="255">
+                      <div id="smallField" *ngIf="password.touched && !password.valid">password is required</div>
+                      </div>
+                      <div class="form-group">
+                      <label for="role">Role</label>
+                     <select name="role" id="role" class="form-control" ngModel #role="ngModel" required>
+                         <option value="">select------</option>
+                      <option value="admin">Admin</option>
+                     <option value="user">User</option>
+                     </select>
+                     <div id="smallField" *ngIf="role.touched && !role.valid">Role is required</div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn btn-success" type="submit" [disabled]="!userregister.valid ">Submit</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                </div>
+                </div>
+  
+        </div>
+    </form>
+  </div>
+

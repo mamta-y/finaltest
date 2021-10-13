@@ -1,0 +1,70 @@
+<div class="alert alert-danger" *ngIf = "error">{{ error }}</div>
+<div class="alert alert-success" *ngIf = "message">{{ message }}</div>
+
+<div class="col-md-4 offset-md-4 mt-3">
+  <form action=""  #leaveform="ngForm" (ngSubmit)="leave(leaveform)">
+      <div class="card">
+          <h3 class="card-header text-center">Apply For Leave!!!</h3>
+              <div class="card-body">
+
+                  <div class="form-group">
+                  <label for="from">From</label>
+                  <input type="date" class="form-control" name="from" ngModel #from="ngModel" required>
+                  <div id="smallField" *ngIf="from.touched && !from.valid">From date is required</div>
+                   </div>
+                   <div class="form-group">
+                    <label for="to">To</label>
+                    <input type="date" class="form-control" name="to" ngModel #to="ngModel" required >
+                    <div id="smallField" *ngIf="to.touched && !to.valid">To date  is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Reason</label>
+                        <input type="text" class="form-control" name="reason" ngModel #reason="ngModel" required>
+                        <div id="smallField" *ngIf="reason.touched && !reason.valid">Reason  is required</div>
+                        </div>
+                    
+                       
+              </div>
+              <div class="card-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                  <button class="btn btn-info" type="submit" >Send</button>
+                 </div>
+              </div>
+
+      </div>
+  </form>
+</div>
+
+
+
+ <!--- <form action=""  [formGroup]="fg" (ngSubmit)="leave()">
+      
+          <h3 class="card-header text-center">Apply For Leave!!!</h3>
+
+              
+                    <label>
+                      From
+                      <input type="date" formControlName="from">
+                    </label>
+                  <br>
+                    <label>
+                      To
+                      <input type="date" formControlName="to">
+                    </label>
+                    <p *ngIf="fg.touched && fg.invalid">Please add a valid from and to date</p>
+                       <br> 
+                          <label>
+                            Reason
+                            <input type="text" formControlName="reason">
+                          </label>
+                      
+        
+            
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                  <button class="btn btn-info" type="submit" >Send</button>
+               </div>
+  </form>-->
+
+
+
+ 

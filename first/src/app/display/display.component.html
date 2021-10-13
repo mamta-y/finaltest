@@ -1,0 +1,238 @@
+<div class="alert alert-danger" *ngIf = "error">{{ error }}</div>
+<div class="alert alert-success" *ngIf = "message">{{ message }}</div>
+<div class="h12" style="height: 400px; width: 100%; ">
+<div class="form-group">
+  <div class="box">
+      <div class="container-fluid">
+        <form class="d-flex">
+      <input
+        type="text"
+        class="form-control me-2"
+        placeholder="Search by Id"
+        [(ngModel)]="_id"/>
+        <button
+          class="btn btn-outline-danger" (click)="searchbyname()">
+          Search
+        </button>
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+        <span class="p1" style="text-align: center; color: black; font-size:xx-large; font-weight: 300;">Our DNA – “I am You” </span>
+        <span class="p2" style="text-align: center; color: green; font-size: x-large; font-weight: 300;"> Our I AM YOU approach reaches out to the elements that constitute and shape AgilizTech – </span>
+        
+        <span class="p3" style="text-align: center; color: green; font-size: x-large; font-weight: 300;">  Customer, Team Member, Company and the Society. This reflects our:</span>
+
+
+
+
+<div class="row">
+    <div class="table-responsive">
+<table class="table table-bordered  border-danger" border="1" >
+    <thead class="table-dark">
+        <tr>
+            <th>S.No. </th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th *ngIf="auth.isLoggedIn() && auth.isAdmin()">Action</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let item of items;let i=index">
+            <td>
+                {{i+1}} 
+            </td>
+            <td>{{ item.firstname }} </td>
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.email }}</td>
+            <td> {{ item.departmentname }}</td>
+            <td>
+                <button class="btn btn-primary"  (click) ="onEdit(item)"  *ngIf = "auth.isLoggedIn() && auth.isAdmin()">Edit</button>
+                <button class="btn btn-danger" (click)="empdelete(item)"  *ngIf = "auth.isLoggedIn() && auth.isAdmin()">Delete</button>
+            </td>
+            
+            
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="col-md-4 offset-md-4 mt-4">
+    <form
+      action=""
+      #editForm="ngForm"
+      (ngSubmit) = "onFormSubmit()"
+      *ngIf = "selectedToEdit && !itemUpdating">
+      <div class="card">
+        <div class="card-header text-success text-center fw-bolder">
+          Update Employee
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="firstname">Firstname Name</label>
+                <input
+                  type="text"
+                  name="firstname"
+                  id="firstname"
+                  class="form-control"
+                  #firstname
+              
+                  [(ngModel)] = "selectedToEdit.firstname"
+                />
+            </div>
+            <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input
+                  type="text"
+                  name="lastname"
+                  id="lastname"
+                  class="form-control"
+                  #lastname
+              
+                  [(ngModel)] = "selectedToEdit.lastname"
+                />
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  #email
+    
+                  [(ngModel)] = "selectedToEdit.email"
+                />
+            </div>
+            <div class="form-group">
+                <label for="password">password</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="form-control"
+                  #password
+              
+                  [(ngModel)] = "selectedToEdit.password"
+                />
+            </div>
+            <div class="form-group">
+                <label for="departmentname">Department</label>
+                <input
+                  type="text"
+                  name="departmentname"
+                  id="departmentname"
+                  class="form-control"
+                  #departmentname
+              
+                  [(ngModel)] = "selectedToEdit.departmentname"
+                />
+              </div>
+              <div class="form-group">
+                <label for="joiningdate">Date of Joining</label>
+                <input
+                  type="date"
+                  name="joiningdate"
+                  id="joiningdate"
+                  class="form-control"
+                  #joiningdate
+      
+                  [(ngModel)] = "selectedToEdit.joiningdate"
+                />
+              </div>
+              <div class="form-group">
+                <label for="date_of_birth">Date of Birth</label>
+                <input
+                  type="date"
+                  name="date_of_birth"
+                  id="date_of_birth"
+                  class="form-control"
+                  #date_of_birth
+          
+
+
+
+                  [(ngModel)] = "selectedToEdit.date_of_birth"
+                />
+              </div>
+    
+    <div class="card-footer">
+      <button type="submit" class="btn btn-secondary" >Submit</button>
+      <button type="reset" class="btn btn-primary" >Reset</button>
+    </div>
+</div>
+</div>
+</form>
+</div>
+
+
+
+
+
+
+<footer class="bg-white" style="border: 2px solid black;">
+  <div class="container py-5">
+      <div class="row py-3">
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+              <h6 class="text-uppercase font-weight-bold mb-4">About</h6>
+              <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="#" class="text-muted">Contact Us</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">About Us</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Stories</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Press</a></li>
+              </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+              <h6 class="text-uppercase font-weight-bold mb-4">Help</h6>
+              <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="#" class="text-muted">Payments</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Shipping</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Cancellation</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Returns</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">Policy</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="#" class="text-muted">Return Policy</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted">Terms Of Use</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted">Security</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Sitemap</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
+              </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-lg-0">
+            <h6 class="text-uppercase font-weight-bold mb-4">Registered Office Address</h6>
+            <p class="text-muted mb-4">No. 07/3, Second Floor, 18th Main Rd, Jayanagara 9th Block, Bengaluru, Karnataka 560041</p>
+            <ul class="list-inline mt-4">
+                <li class="list-inline-item"><a href="https://www.twitter.com" target="_blank" title="twitter">twitter</a></li>
+                <li class="list-inline-item"><a href="https://www.facebook.com" target="_blank" title="facebook">facebook<i class="fab fa-2x fa-facebook-f"></i></a></li>
+                <li class="list-inline-item"><a href="https://www.instagram.com" target="_blank" title="instagram">instagram<i class="fab fa-2x fa-instagram"></i></a></li>
+               
+                
+            </ul>
+        </div>
+    </div>
+</div>
+<hr class="p-0 m-0 b-0">
+<div class="bg-dark py-2">
+    <div class="container text-center">
+        <p class="text-muted mb-2 py-2">© 2021 Agiliztech All rights reserved.</p>
+    </div>
+</div>
+</footer>

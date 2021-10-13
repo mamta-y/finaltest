@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC2-FoNn0aOebzRf2RJmqVmoI3qUUZtQMm6fhOUxOS9JqvfMtZHSnDT_rI_nfny-x7Xww&usqp=CAU" alt="" width="60" height="40" style="border-radius: 50%;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2  mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="display" *ngIf="auth.isLoggedIn()">Veiw Employee</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="add" *ngIf="auth.isLoggedIn() && auth.isAdmin()" >Add Employee</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="leave" *ngIf="auth.isLoggedIn() && auth.isUser() " >Leave</a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="displayleave" *ngIf="auth.isLoggedIn() " >Veiw Leave</a>
+
+        </li>
+        </ul>
+        <ul class="navbar-nav ml-auto  mt-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="register" *ngIf = "auth.isLoggedIn()">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="login" *ngIf = "auth.isLoggedIn()" >Login</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link active"
+          (click) = "auth.logout()"
+          style="cursor: pointer;"
+          *ngIf = "auth.isLoggedIn()">Logout</a>
+        </li>
+         </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<router-outlet></router-outlet>

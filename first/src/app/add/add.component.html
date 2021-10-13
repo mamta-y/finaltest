@@ -1,0 +1,115 @@
+<div class="alert alert-danger" *ngIf="error">
+    {{ error }}
+  </div>
+  <div class="alert alert-success" *ngIf="message">
+    {{ message }}
+  </div>
+
+<div class="col-md-4 offset-md-4 mt-4">
+    <form
+      action=""
+      #addForm="ngForm"
+      (ngSubmit)="onFormSubmit(addForm)">
+      <div class="card">
+        <div class="card-header text-success text-center fw-bolder">
+          Add Employee
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              class="form-control"
+              #firstname required  maxlength="10" minlength="3" 
+              ngModel />
+           
+            
+          </div>
+          <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              class="form-control"
+              #lastname
+              ngModel required maxlength="10" minlength="3"
+            />
+           
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              #email
+              ngModel required
+            />
+            
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              #password
+              ngModel required minlength="6" maxlength="255"
+            />
+          
+          </div>
+          <div class="form-group">
+            <label for="departmentname">Department</label>
+            <input
+              type="text"
+              name="departmentname"
+              id="departmentname"
+              class="form-control"
+              #departmentname required maxlength="15" minlength="6"
+              ngModel
+            />
+            
+          </div>
+          <div class="form-group">
+            <label for="joiningdate">Date of Joining</label>
+            <input
+              type="date"
+              name="joiningdate"
+              id="joiningdate"
+              class="form-control"
+              #joiningdate
+              ngModel required
+            />
+           
+          </div>
+          <div class="form-group">
+            <label for="date_of_birth">Date of Birth</label>
+            <input
+              type="date"
+              name="date_of_birth"
+              id="date_of_birth"
+              class="form-control"
+              #date_of_birth 
+              ngModel required
+            />
+           
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="button-group float-right">
+            <div class="d-grid gap-2 col-4 mx-auto">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+           
+                 <button type="reset" class="btn btn-primary">Reset</button>
+            
+          </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
